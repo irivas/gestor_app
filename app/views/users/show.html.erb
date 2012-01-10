@@ -1,35 +1,36 @@
 <p id="notice"><%= notice %></p>
-
+<h1> <%= "#{@user.name} #{@user.surname}" %> </h1>
 <p>
-  <b>Name:</b>
+  <b>Name</b><br />
   <%= @user.name %>
 </p>
 
 <p>
-  <b>Surname:</b>
+  <b>Surname</b><br />
   <%= @user.surname %>
 </p>
 
 <p>
-  <b>Nif:</b>
+  <b>Nif</b><br />
   <%= @user.nif %>
 </p>
 
 <p>
-  <b>Email:</b>
-  <%= @user.email %>
+  <b>Email</b><br />
+  <%= link_to @user.email %>
 </p>
 
 <p>
-  <b>Phone:</b>
+  <b>Phone</b><br />
   <%= @user.phone %>
 </p>
 
 <p>
-  <b>Address:</b>
+  <b>Address</b><br />
   <%= @user.address %>
 </p>
 
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Edit password', '#'%> |
 <%= link_to 'Back', users_path %>

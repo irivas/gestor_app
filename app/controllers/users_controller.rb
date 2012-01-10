@@ -2,8 +2,13 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
-    @title = "All users"
+    if params[:search]
+      @users = User.find(:all, :conditions => ['name LIKE ?', 
+                                              "%#{params[:search]}%"])
+    else
+      @users = User.all
+      @title = "All users"
+    end  
   end
 
   # GET /users/1

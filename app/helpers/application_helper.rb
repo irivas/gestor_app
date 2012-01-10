@@ -8,4 +8,8 @@ module ApplicationHelper
 			"#{base_title} | #{@title}"
 		end
 	end
+
+	def logo
+		image_tag("logo_wire.png", :alt => "Gestor app", :class => "round")
+	end
 end
