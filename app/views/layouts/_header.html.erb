@@ -3,18 +3,17 @@
   <nav class="round">
     <ul>
       <li><%= link_to "Home", root_path %></li>
-      
+      <% if signed_in? %>
         <li><%= link_to "Pessoas", users_path %></li>
-        <li><%= link_to "Profile", '#' %></li>
+        <li><%= link_to "Profile", current_user %></li>
         <li><%= link_to "Edit", '#' %></li>
         <li><%= link_to "Org. Units", '#' %></li>
         <li><%= link_to "Charges", '#' %></li>
         <li><%= link_to "Competences", '#' %></li>
-      
-        <li><%= link_to "Sign out", signout_path %></li>
-      
+        <li><%= link_to "Sign out", signout_path, :method => :delete %></li>
+      <% else %>
         <li><%= link_to "Sign in", signin_path %></li>
-      
+      <% end %>
     </ul>
   </nav>
 </header>
