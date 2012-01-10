@@ -1,5 +1,22 @@
 GestorApp::Application.routes.draw do
+  
   resources :users
+  
+  #get "users/new"
+  get "pages/home"
+
+  get "pages/pessoas"
+
+  get "pages/organizational_units"
+
+  get "pages/competences"
+
+  root :to => "pages#home"
+
+  
+  match '/signup', :to => 'users#new'
+  match '/signin', :to => 'sessions#new'
+  match '/signout', :to => 'sessions#destroy'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
