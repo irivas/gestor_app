@@ -19,7 +19,9 @@ group :assets do
   gem 'uglifier'
 end
 
-
+gem 'annotate', 
+    :git => 'git://github.com/jeremyolliver/annotate_models.git', 
+    :branch => 'rake_compatibility'
 
 # Use unicorn as the web server
 # gem 'unicorn'

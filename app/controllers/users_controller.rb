@@ -28,6 +28,7 @@ class UsersController < ApplicationController
   def new
     @user = User.new
     @title = "Sign up"
+    #@action = "New Action"
   end
 
   # GET /users/1/edit
@@ -35,13 +36,16 @@ class UsersController < ApplicationController
     #@user = User.find(params[:id])
     #lo ponemos en la zona privada dentro de correct_user
     @title = "Edit user"
+    #@action = "Edit Action"
   end
 
   # POST /users
   # POST /users.json
   def create
     @user = User.new(params[:user])
+    @change_password = 1
     if @user.save
+      sign_in @user
       flash[:success] = "Bienvenido al gestor de usuarios"
       redirect_to @user
     else
@@ -54,7 +58,16 @@ class UsersController < ApplicationController
   # PUT /users/1.json
   def update
     #@user = User.find(params[:id])
+    @change_password = 0
+    puts @change_password
     if @user.update_attributes(params[:user])
+                               # :name    => params[:user][:name],
+      #                        :surname  => params[:user][:surname],
+       #                       :nif      => params[:user][:nif],
+        #                      :address  => params[:user][:address],
+         #                     :email    => params[:user][:email],
+          #                    :phone    => params[:user][:phone])
+    #if @user.valid?
       flash[:success] = "Profile updated."
       redirect_to @user
     else

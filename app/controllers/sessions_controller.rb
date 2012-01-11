@@ -7,9 +7,9 @@ class SessionsController < ApplicationController
   	user = User.authenticate(params[:session][:email],
   							 params[:session][:password])
   	if user.nil?
-  		flash.now[:error] = "Invalid email/password combination. Try again."
- 		@title = "Sign in" 		
-  		render 'new'#render the new view.
+  		  flash.now[:error] = "Invalid email/password combination. Try again."
+ 		   @title = "Sign in" 		
+  		  render 'new'#render the new view.
   	else
   		sign_in user
   		redirect_back_or user

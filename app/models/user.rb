@@ -1,7 +1,26 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id                 :integer         not null, primary key
+#  name               :string(255)
+#  surname            :string(255)
+#  nif                :string(255)
+#  email              :string(255)
+#  phone              :integer
+#  address            :string(255)
+#  created_at         :datetime
+#  updated_at         :datetime
+#  encrypted_password :string(255)
+#  salt               :string(255)
+#  admin              :boolean         default(FALSE)
+#
+
 require 'digest'
 class User < ActiveRecord::Base
 
-	attr_accessor :password
+	attr_accessor :password, :password_confirmation, :change_password
+
 	attr_accessible :name, :surname, :nif, :email, :phone, :address,
 					:password, :password_confirmation
 
@@ -17,10 +36,12 @@ class User < ActiveRecord::Base
 						:format => { :with => email_regex },
 						:uniqueness => { :case_sensitive => false }
 	
-	validates :password,	:presence => true,
+	validates  :password,	:presence => true, 
 							:confirmation => true,
-							:length => { :within => 6..40 }
+							:length => { :within => 6..40 },
+              :on => :create
 
+  #validates :password,  :length => { :within => 6..40 } 
 	#validates_length_of :phone, :is => 9
 
 	before_save :encrypt_password
@@ -36,8 +57,7 @@ class User < ActiveRecord::Base
     end
   end
 
-
-	def has_password?(submitted_password)
+  def has_password?(submitted_password)
     	encrypted_password == encrypt(submitted_password)
   	end
 
@@ -55,8 +75,10 @@ class User < ActiveRecord::Base
   private
 
     def encrypt_password
-      self.salt = make_salt unless has_password?(password)
-      self.encrypted_password = encrypt(password)
+      if change_password
+        self.salt = make_salt unless has_password?(password)
+        self.encrypted_password = encrypt(password)
+      end
     end
 
     def encrypt(string)
