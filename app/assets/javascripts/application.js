@@ -7,3 +7,13 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+$(function() {
+	$("#usuarios .pagination a").live("click", function() {
+		$.getScript(this.href);
+		return false;
+	});
+	$("#usuarios_search input").keyup(function() {
+		$.get($("#usuarios_search").action, $("#usuarios_search").serialize(), null, "script");
+		return false;
+	});
+});
