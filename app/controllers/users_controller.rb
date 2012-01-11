@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_filter :authenticate, :only => [:index, :edit, :update, :destroy]
-  before_filter :correct_user, :only => [:edit, :update]
+  before_filter :correct_user, :only => [:edit, :update, :edit_password, :update_password]
   before_filter :admin_user, :only => :destroy
   # GET /users
   # GET /users.json
@@ -43,7 +43,7 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(params[:user])
-    @change_password = 1
+    @action_password = 1
     if @user.save
       sign_in @user
       flash[:success] = "Bienvenido al gestor de usuarios"
@@ -58,8 +58,8 @@ class UsersController < ApplicationController
   # PUT /users/1.json
   def update
     #@user = User.find(params[:id])
-    @change_password = 0
-    puts @change_password
+    @action_password = 0
+    #puts @change_password
     if @user.update_attributes(params[:user])
                                # :name    => params[:user][:name],
       #                        :surname  => params[:user][:surname],
@@ -82,6 +82,26 @@ class UsersController < ApplicationController
     User.find(params[:id]).destroy
     flash[:success] = "User deleted."
     redirect_to users_path
+  end
+
+  def edit_password
+    @title = "Editar password"
+  end
+
+  def update_password
+    @title = "Update password"
+##cambiar esto...
+    @user = User.find(params[:id])
+    @action_password = 1
+    if @user.save
+      sign_in @user
+      flash[:success] = "Bienvenido al gestor de usuarios"
+      redirect_to @user
+    else
+      @title = "Sign up"
+      render 'new'
+    end   
+  ##############################
   end
 
   private

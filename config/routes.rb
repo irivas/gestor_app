@@ -2,7 +2,12 @@ GestorApp::Application.routes.draw do
   
   get "sessions/new"
 
-  resources :users
+  resources :users do
+    member do
+      get 'edit_password'
+      put 'update_password'
+    end
+  end
   resources :sessions, :only => [:new, :create, :destroy]
   
   #get "users/new"

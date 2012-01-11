@@ -19,10 +19,10 @@
 require 'digest'
 class User < ActiveRecord::Base
 
-	attr_accessor :password, :password_confirmation, :change_password
+	attr_accessor :password, :password_confirmation, :action_password
 
 	attr_accessible :name, :surname, :nif, :email, :phone, :address,
-					:password, :password_confirmation
+					:password, :password_confirmation, :old_password
 
 	email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
@@ -45,6 +45,8 @@ class User < ActiveRecord::Base
 	#validates_length_of :phone, :is => 9
 
 	before_save :encrypt_password
+  #before_create :encrypt_password
+  before_update_password :cambia_password
 
   #---para la busqueda de usuarios
   def self.search(search)
@@ -73,9 +75,23 @@ class User < ActiveRecord::Base
   	end
 
   private
+    #---------------------------------------------------------------
+    def cambia_password
+      if esValida_oldpassword(old_password) && (password == password_confirmation)
+        encrypt_password
+      else
+        return false
+      end
+    end
+
+    def esValida_oldpassword(string)
+      encrypted_password == encrypt(string)
+    end
+    #---------------------------------------------------------------
+
 
     def encrypt_password
-      if change_password
+      if action_password
         self.salt = make_salt unless has_password?(password)
         self.encrypted_password = encrypt(password)
       end
