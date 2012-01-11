@@ -30,7 +30,8 @@
   <%= @user.address %>
 </p>
 
-
+<% if current_user.admin? || current_user?(@user) %>
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Edit password', '#'%> |
 <%= link_to 'Back', users_path %>
+<% end %>

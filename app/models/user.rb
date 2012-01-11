@@ -28,12 +28,14 @@ class User < ActiveRecord::Base
   #---para la busqueda de usuarios
   def self.search(search)
     if search
-      all(:conditions => ['name LIKE ?', "%#{search}%"])
+      #all(:conditions => ['name LIKE ?', "%#{search}%"])
+      where('name LIKE ?', "%#{search}%")
     else
-      all
+      #all
+      scoped
     end
   end
-  
+
 
 	def has_password?(submitted_password)
     	encrypted_password == encrypt(submitted_password)

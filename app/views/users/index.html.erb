@@ -8,7 +8,10 @@
     </p>
   <% end %>
 
+
+
 <div class='contents'>
+<%= will_paginate %>
 <table cellpadding='0' cellspacing='0'>
   <tr>
     <th width='20%'>Name</th>
@@ -31,11 +34,17 @@
     <!--<td><%= user.phone %></td>
     <td><%= user.address %></td>
     <td><%= link_to 'Show', user %></td>-->
-    <td><%= link_to 'Edit', edit_user_path(user) %></td>
-    <td><%= link_to 'Delete', user, confirm: 'Are you sure?', method: :delete %></td>
+    <% if current_user.admin? || current_user?(user) %>
+      <td><%= link_to 'Edit', edit_user_path(user) %></td>
+      <td><%= link_to 'Delete', user, :confirm => 'Are you sure?', :method => :delete,
+                                      :title => "Delete #{user.name}" %></td>
+    <% end %>
   </tr>
 <% end %>
 </table>
+
+<%= will_paginate %>
+
 <div class='clear_all'></div>
 </div>
 </div>
