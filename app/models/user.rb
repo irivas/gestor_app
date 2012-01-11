@@ -25,6 +25,14 @@ class User < ActiveRecord::Base
 
 	before_save :encrypt_password
 
+  #---para la busqueda de usuarios
+  def self.search(search)
+    if search
+      all(:conditions => ['name LIKE ?', "%#{search}%"])
+    else
+      all
+    end
+  end
   
 
 	def has_password?(submitted_password)

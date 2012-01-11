@@ -1,14 +1,18 @@
 class UsersController < ApplicationController
+  before_filter :authenticate, :only => [:edit, :update]
+  before_filter :correct_user, :only => [:edit, :update]
   # GET /users
   # GET /users.json
   def index
-    if params[:search]
-      @users = User.find(:all, :conditions => ['name LIKE ?', 
-                                              "%#{params[:search]}%"])
-    else
-      @users = User.all
-      @title = "All users"
-    end  
+    @users = User.search(params[:search])
+    @title = "Users"
+    #if params[:search]
+     # @users = User.all(:conditions => ['name LIKE ?', 
+      #                                        "%#{params[:search]}%"])
+    #else
+     # @users = User.all
+      #@title = "All users"
+    #end  
   end
 
   # GET /users/1
@@ -27,7 +31,8 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
-    @user = User.find(params[:id])
+    #@user = User.find(params[:id])
+    #lo ponemos en la zona privada dentro de correct_user
     @title = "Edit user"
   end
 
@@ -47,9 +52,14 @@ class UsersController < ApplicationController
   # PUT /users/1
   # PUT /users/1.json
   def update
-    @user = User.find(params[:id])
-
-    
+    #@user = User.find(params[:id])
+    if @user.update_attributes(params[:user])
+      flash[:success] = "Profile updated."
+      redirect_to @user
+    else
+      @title = "Edit user"
+      render 'edit'
+    end
   end
 
   # DELETE /users/1
@@ -57,7 +67,18 @@ class UsersController < ApplicationController
   def destroy
     @user = User.find(params[:id])
     @user.destroy
-
-    
   end
+
+  private
+
+    def authenticate
+      deny_access unless signed_in?
+      #deny_access definido en sessions_helper.rb
+    end
+
+    def correct_user
+      @user = User.find(params[:id])
+      redirect_to(root_path) unless current_user?(@user)
+      #current_user? definido en sessions_helper.rb
+    end
 end
