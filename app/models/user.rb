@@ -41,15 +41,20 @@ class User < ActiveRecord::Base
 							:length => { :within => 6..40 },
               :on => :create
 
-  #validates :password,  :length => { :within => 6..40 } 
-	#validates_length_of :phone, :is => 9
-
 	before_save :encrypt_password
 
-  #def self.modifica_password?(old_password, password, password_confirmation)
-   # cambia_password?
-  #end
-  #---para la busqueda de usuarios
+  #############################################################
+  ################# Relationships #############################
+  has_many :user_competences
+  has_many :competences, :through => :user_competences
+  ## el dependent es para que cuando se elimine un usuario
+  ## automaticamente se eliminen las entradas de la tabla de 
+  ## la relacion en las que participe.                              
+  #############################################################
+  #############################################################
+
+
+  #para la busqueda de usuarios
   def self.search(search)
     if search
       #all(:conditions => ['name LIKE ?', "%#{search}%"])

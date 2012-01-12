@@ -14,4 +14,8 @@ class OrganicUnit < ActiveRecord::Base
 
 	validates :name,	:presence => true,
 						:uniqueness => { :case_sensitive => false }
+
+	has_many :org_sons, 	:class_name => "OrganicUnit"
+	belongs_to :org_father, :class_name => "OrganicUnit",
+							:foreign_key => "org_father_id"
 end
