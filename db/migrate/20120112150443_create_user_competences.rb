@@ -1,5 +1,5 @@
 class CreateUserCompetences < ActiveRecord::Migration
-  def change
+  def self.up
     create_table :user_competences do |t|
       t.integer :user_id
       t.integer :competence_id
@@ -17,5 +17,8 @@ class CreateUserCompetences < ActiveRecord::Migration
     ########## Para que un usuario solo tenga una competencia una vez ######
     add_index :user_competences, [:user_id, :competence_id], :unique => true
     ########################################################################
+  end
+  def self.down
+  	drop_table :user_competences
   end
 end

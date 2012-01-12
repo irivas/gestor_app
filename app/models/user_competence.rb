@@ -24,6 +24,6 @@ class UserCompetence < ActiveRecord::Base
 
   validates :user_id, 			:presence => true
   validates :competence_id, :presence => true
-  validates :level, 			:presence => true
-
+  validates :level, 				:presence => true
+  validates_uniqueness_of :user_id, :scope => [:competence_id]
 end

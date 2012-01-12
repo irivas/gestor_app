@@ -30,6 +30,16 @@
   <%= @user.address %>
 </p>
 
+<p>
+  <b>Competencias</b><br />
+  <ul>
+    <% @competences.each do |competence| %>
+      <li><%= competence.name %></li>
+      <li><%= competence.level %></li>
+    <% end %>
+  </ul>
+</p>
+
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Edit password', edit_password_user_path(@user) %> |
 <%= link_to 'Back', users_path %>

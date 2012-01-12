@@ -80,22 +80,48 @@ class User < ActiveRecord::Base
   		(user && user.salt == cookie_salt) ? user : nil
   	end
 
+    ######################################################
+    ############### Para competences #####################
+    ######################################################
+    
+    #######Devuelve las competence de user dado el id#####
+    def competences#(user)
+      #user = find_by_id(id)
+      user_competences.all
+    end
+    ######################################################
+    ######################################################
+    #######Comprueba si tiene competencias ###############
+    def competences?#(user)
+      #user = find_by_id(id)
+      user_competences.all.empty?
+    end
+    ######################################################
+    ######################################################
+    ####Crea una entrada en la tabla relacion competencia#
+    def crea_competencia(id_competencia, nivel)
+      #user = find_by_id(id)
+      user_competences.create(:competencia_id => id_competencia,
+                              :level => nivel)
+    end
+    ######################################################
+    ####Elimina competencia del usuario###################
+    def elimina_competencia(id_competencia)
+      #user = find_by_id(id)
+      user_competences.find_by_id(id_competencia).destroy
+    end
+    ######################################################
+    ####Modifica el nivel en una competencia##############
+    def modifica_nivel_competencia(id_competencia, nivel)
+      user_competences.find_by_id(id_competencia).update_attribute(:level, nivel)
+    end
+    ######################################################
+
+
+    ######################################################
+
   private
-    #---------------------------------------------------------------
-    #def cambia_password?
-     # if esValida_oldpassword(old_password) && (password == password_confirmation)
-      #  encrypt_password
-      #else
-       # return false
-      #end
-    #end
-
-    #def esValida_oldpassword(string)
-     # encrypted_password == encrypt(string)
-    #end
-    #---------------------------------------------------------------
-
-
+    
     def encrypt_password
 
       if self.set_the_password
