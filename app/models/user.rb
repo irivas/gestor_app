@@ -46,9 +46,9 @@ class User < ActiveRecord::Base
 
 	before_save :encrypt_password
   #before_create :encrypt_password
-  def self.modifica_password?
-    cambia_password?
-  end
+  #def self.modifica_password?(old_password, password, password_confirmation)
+   # cambia_password?
+  #end
   #---para la busqueda de usuarios
   def self.search(search)
     if search
@@ -77,13 +77,13 @@ class User < ActiveRecord::Base
 
   private
     #---------------------------------------------------------------
-    def cambia_password?
-      if esValida_oldpassword(old_password) && (password == password_confirmation)
-        encrypt_password
-      else
-        return false
-      end
-    end
+    #def cambia_password?
+     # if esValida_oldpassword(old_password) && (password == password_confirmation)
+      #  encrypt_password
+      #else
+       # return false
+      #end
+    #end
 
     def esValida_oldpassword(string)
       encrypted_password == encrypt(string)
@@ -93,8 +93,15 @@ class User < ActiveRecord::Base
 
     def encrypt_password
       if action_password
-        self.salt = make_salt unless has_password?(password)
-        self.encrypted_password = encrypt(password)
+        if !update_pass
+          self.salt = make_salt unless has_password?(password)
+          self.encrypted_password = encrypt(password)
+        else
+          if esValida_oldpassword(old_password) && (password == password_confirmation)
+            self.salt = make_salt unless has_password?(password)
+            self.encrypted_password = encrypt(password)
+          end
+        end
       end
     end
 
