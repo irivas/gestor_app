@@ -1,0 +1,16 @@
+<table>
+<tr>
+	<th>Name</th>
+	<th></th>
+	<th></th>
+</tr>
+<% @competences.each do |competence| %>
+	<tr>
+		<td><%= link_to competence.name, competence %></td>
+		<td><%= link_to 'Edit', edit_competence_path(competence) %></td>
+ 	    <td><%= link_to 'Delete', competence, :confirm => 'Are you sure?', :method => :delete,
+                                      :title => "Delete #{competence.name}" %></td>
+	</tr>
+<% end %>
+</table>
+<%= link_to 'New Competence', new_competence_path %>

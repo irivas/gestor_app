@@ -1,0 +1,12 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @organic_unit.name %><br />
+  <b>Description:</b>
+  <%= @organic_unit.description %>
+</p><br />
+
+
+<%= link_to 'Edit', edit_organic_unit_path(@organic_unit) %> |
+<%= link_to 'Back', organic_units_path %>

@@ -19,7 +19,7 @@
 require 'digest'
 class User < ActiveRecord::Base
 
-	attr_accessor :password, :password_confirmation, :action_password
+	attr_accessor :password, :password_confirmation, :set_the_password, :old_password
 
 	attr_accessible :name, :surname, :nif, :email, :phone, :address,
 					:password, :password_confirmation, :old_password
@@ -45,7 +45,7 @@ class User < ActiveRecord::Base
 	#validates_length_of :phone, :is => 9
 
 	before_save :encrypt_password
-  #before_create :encrypt_password
+
   #def self.modifica_password?(old_password, password, password_confirmation)
    # cambia_password?
   #end
@@ -85,25 +85,20 @@ class User < ActiveRecord::Base
       #end
     #end
 
-    def esValida_oldpassword(string)
-      encrypted_password == encrypt(string)
-    end
+    #def esValida_oldpassword(string)
+     # encrypted_password == encrypt(string)
+    #end
     #---------------------------------------------------------------
 
 
     def encrypt_password
-      if action_password
-        if !update_pass
-          self.salt = make_salt unless has_password?(password)
-          self.encrypted_password = encrypt(password)
-        else
-          if esValida_oldpassword(old_password) && (password == password_confirmation)
-            self.salt = make_salt unless has_password?(password)
-            self.encrypted_password = encrypt(password)
-          end
-        end
+
+      if self.set_the_password
+        self.salt = make_salt unless has_password?(password)
+        self.encrypted_password = encrypt(password)
       end
     end
+    
 
     def encrypt(string)
       secure_hash("#{salt}--#{string}")

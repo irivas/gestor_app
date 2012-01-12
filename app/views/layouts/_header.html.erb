@@ -10,9 +10,9 @@
         <li><%= link_to "Pessoas", users_path %></li>
         <li><%= link_to "Profile", current_user %></li>
         
-        <li><%= link_to "Org. Units", '#' %></li>
+        <li><%= link_to "Org. Units", organic_units_path %></li>
         <li><%= link_to "Charges", '#' %></li>
-        <li><%= link_to "Competences", '#' %></li>
+        <li><%= link_to "Competences", competences_path %></li>
         <li></li>
         <li><%= link_to "Sign out", signout_path, :method => :delete %></li>
       <% else %>

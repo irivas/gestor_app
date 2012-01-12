@@ -1,0 +1,23 @@
+<h1><%= @title %></h1>
+
+<table>
+  <tr>
+    <th width='30%'>Name</th>
+    <th width='60%'>Description</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @organic_units.each do |organic_unit| %>
+  <tr>
+    <td><%= link_to organic_unit.name, organic_unit %></td>
+    <td><%= organic_unit.description %></td>
+    <td><%= link_to 'Edit', edit_organic_unit_path(organic_unit) %></td>
+    <td><%= link_to 'Delete', organic_unit, confirm: 'Are you sure?', method: :delete, :title => "Delete #{organic_unit.name}" %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Organic unit', new_organic_unit_path %>

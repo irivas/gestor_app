@@ -45,8 +45,8 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(params[:user])
-    @action_password = 1
-    @update_pass = 0
+    @user.set_the_password = true
+    #@update_pass = 0
     if @user.save
       sign_in @user
       flash[:success] = "Bienvenido al gestor de usuarios"
@@ -61,8 +61,8 @@ class UsersController < ApplicationController
   # PUT /users/1.json
   def update
     #@user = User.find(params[:id])
-    @action_password = 0
-    @update_pass = 0
+    
+    #@update_pass = 0
     #puts @change_password
     if @user.update_attributes(params[:user])
                                # :name    => params[:user][:name],
@@ -95,10 +95,9 @@ class UsersController < ApplicationController
   def update_password
     #ha llamado antes a correct_user
     @title = "Update password"
-    ##modificar password
-    @action_password = 1
-    @update_pass = 1
-    #if User.modifica_password?(old_password, password, password_confirmation)
+
+    @user.set_the_password = true
+
     if @user.update_attributes(params[:user])
       flash[:success] = "Password modificada"
       redirect_to @user

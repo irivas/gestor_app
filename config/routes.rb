@@ -1,5 +1,12 @@
 GestorApp::Application.routes.draw do
   
+  resources :organic_units
+
+  resources :competences
+
+
+  resources :sessions, :only => [:new, :create, :destroy]
+
   get "sessions/new"
 
   resources :users do
@@ -8,14 +15,14 @@ GestorApp::Application.routes.draw do
       put 'update_password'
     end
   end
-  resources :sessions, :only => [:new, :create, :destroy]
+
   
   #get "users/new"
   get "pages/home"
 
   get "pages/pessoas"
 
-  get "pages/organizational_units"
+  get "pages/organic_units"
 
   get "pages/competences"
 
