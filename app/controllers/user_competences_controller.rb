@@ -13,7 +13,7 @@ class UserCompetencesController < ApplicationController
 			@competences = Competence.all
 			#@user = User.find(params[:user_id])
 		else
-			render 'show'
+			render 'new'
 		end
 	end
 

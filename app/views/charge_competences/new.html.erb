@@ -1,0 +1,19 @@
+<%= form_for(@charge_competence) do |f| %>
+  <%= render 'shared/error_messages', :object => f.object %>
+
+  <div class="field">
+    <%= f.label "Competences" %>
+  </div>
+
+  <% @competences.each do |compt| %>
+    <%= check_box_tag(compt) %>
+    <%= label_tag(compt, compt.name) %>
+  <% end %>
+  <div class="field">
+    <%= f.hidden_field :charge_id %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "New competence"%>
+  </div>
+<% end %>

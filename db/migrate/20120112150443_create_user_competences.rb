@@ -9,7 +9,7 @@ class CreateUserCompetences < ActiveRecord::Migration
     end
     
     ###### Creamos indice para hacer la busqueda mas rapida #########
-	add_index :user_competences, :user_id
+	   add_index :user_competences, :user_id
     add_index :user_competences, :competence_id
     #################################################################
 

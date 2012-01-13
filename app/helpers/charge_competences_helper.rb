@@ -1,0 +1,2 @@
+module ChargeCompetencesHelper
+end

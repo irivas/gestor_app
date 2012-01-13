@@ -5,6 +5,9 @@
   <%= @charge.name %>
 </p>
 
+<p>
+  <%= link_to 'Competencia nueva', new_charge_competence_path(params = :charge_id => @charge.id) %>
+</p>
 
 <%= link_to 'Edit', edit_charge_path(@charge) %> |
 <%= link_to 'Back', charges_path %>

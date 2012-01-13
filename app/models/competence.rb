@@ -23,6 +23,12 @@ class Competence < ActiveRecord::Base
 	## automaticamente se eliminen las entradas de la tabla de 
 	## la relacion en las que participe.                              
   #############################################################
-  has_and_belongs_to_many :charges, :uniq => true
+  #############################################################
+  has_many :charge_competences#, :nullify
+  has_many :charges, :through => :charge_competences
+	## el dependent es para que cuando se elimine una competencia
+	## automaticamente se eliminen las entradas de la tabla de 
+	## la relacion en las que participe.                              
+  #############################################################
   #############################################################
 end
