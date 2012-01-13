@@ -4,6 +4,7 @@ class CompetencesController < ApplicationController
   
 	def index
 		@competences = Competence.all
+    @title = "Competences"
 	end
 
 	def new

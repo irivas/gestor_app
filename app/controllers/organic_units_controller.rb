@@ -12,7 +12,9 @@ class OrganicUnitsController < ApplicationController
   # GET /organic_units/new
   # GET /organic_units/new.json
   def new
+    @title = "New Organic Unit"
     @organic_unit = OrganicUnit.new
+
   end
 
   # POST /organic_units

@@ -1,5 +1,7 @@
 GestorApp::Application.routes.draw do
   
+  resources :charges
+
   resources :organic_units
 
   resources :competences

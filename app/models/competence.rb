@@ -23,5 +23,6 @@ class Competence < ActiveRecord::Base
 	## automaticamente se eliminen las entradas de la tabla de 
 	## la relacion en las que participe.                              
   #############################################################
+  has_and_belongs_to_many :charges, :uniq => true
   #############################################################
 end

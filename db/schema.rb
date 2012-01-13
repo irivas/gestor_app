@@ -11,7 +11,20 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120112150443) do
+ActiveRecord::Schema.define(:version => 20120113181544) do
+
+  create_table "charge_competences", :force => true do |t|
+    t.integer  "competence_id"
+    t.integer  "charge_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "charges", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "competences", :force => true do |t|
     t.string   "name"
