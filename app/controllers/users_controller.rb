@@ -29,6 +29,7 @@ class UsersController < ApplicationController
     #este tiene el user_id competence_id level
     @competences = @user.user_competences
     
+    
   end
 
   # GET /users/new

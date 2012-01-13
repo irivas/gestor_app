@@ -34,7 +34,8 @@
 <% unless @competences.empty? %>
 <p>
   <b>Competencias</b><br />
-  <%= link_to 'Competencia nueva', new_user_competence_path(@user) %>
+  
+  <%= link_to 'Competencia nueva', new_user_competence_path(params = :user_id => @user.id) %>
 </p>
     <table>
       <tr>
@@ -48,8 +49,10 @@
         <tr>
           <td> <%= link_to cuser.competence.name, cuser.competence %> </td>
           <td> <%= cuser.level %> </td>
-          <td> <%= link_to 'Edit level', '#' %> </td>
-          <td> <%= link_to 'Delete', '#' %></td>
+          <td> <%= link_to 'Edit level', edit_user_competence_path(cuser) %> </td>
+          <td> <%= link_to 'Delete', cuser, :confirm => 'Are you sure?',
+                                            :method => :delete,
+                                            :title => "Delete#{cuser.competence.name}"%></td>
         </tr>
       <% end %>
       </table>
