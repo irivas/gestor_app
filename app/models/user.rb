@@ -45,7 +45,7 @@ class User < ActiveRecord::Base
 
   #############################################################
   ################# Relationships #############################
-  has_many :user_competences
+  has_many :user_competences#, :dependent => :nullify
   has_many :competences, :through => :user_competences
   ## el dependent es para que cuando se elimine un usuario
   ## automaticamente se eliminen las entradas de la tabla de 
@@ -85,35 +85,35 @@ class User < ActiveRecord::Base
     ######################################################
     
     #######Devuelve las competence de user dado el id#####
-    def competences#(user)
+    #def competences#(user)
       #user = find_by_id(id)
-      user_competences.all
-    end
+     # competences
+    #end
     ######################################################
     ######################################################
     #######Comprueba si tiene competencias ###############
     def competences?#(user)
       #user = find_by_id(id)
-      user_competences.all.empty?
+      competences.all.empty?
     end
     ######################################################
     ######################################################
     ####Crea una entrada en la tabla relacion competencia#
     def crea_competencia(id_competencia, nivel)
       #user = find_by_id(id)
-      user_competences.create(:competencia_id => id_competencia,
+      competences.create(:competencia_id => id_competencia,
                               :level => nivel)
     end
     ######################################################
     ####Elimina competencia del usuario###################
     def elimina_competencia(id_competencia)
       #user = find_by_id(id)
-      user_competences.find_by_id(id_competencia).destroy
+      competences.find_by_id(id_competencia).destroy
     end
     ######################################################
     ####Modifica el nivel en una competencia##############
     def modifica_nivel_competencia(id_competencia, nivel)
-      user_competences.find_by_id(id_competencia).update_attribute(:level, nivel)
+      competences.find_by_id(id_competencia).update_attribute(:level, nivel)
     end
     ######################################################
 

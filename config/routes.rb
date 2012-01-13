@@ -4,7 +4,7 @@ GestorApp::Application.routes.draw do
 
   resources :competences
 
-
+  resources :user_competences
   resources :sessions, :only => [:new, :create, :destroy]
 
   get "sessions/new"

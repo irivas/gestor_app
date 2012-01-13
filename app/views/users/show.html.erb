@@ -29,16 +29,33 @@
   <b>Address</b><br />
   <%= @user.address %>
 </p>
+<br />
 
+<% unless @competences.empty? %>
 <p>
   <b>Competencias</b><br />
-  <ul>
-    <% @competences.each do |competence| %>
-      <li><%= competence.name %></li>
-      <li><%= competence.level %></li>
-    <% end %>
-  </ul>
+  <%= link_to 'Competencia nueva', new_user_competence_path(@user) %>
 </p>
+    <table>
+      <tr>
+        <th width='30%'>Name</th>
+        <th width='30%'>Level</th>
+        <th></th>
+        <th></th>
+      </tr>
+      <!--@competences array de competencias del user-->
+      <% @competences.each do |cuser| %>
+        <tr>
+          <td> <%= link_to cuser.competence.name, cuser.competence %> </td>
+          <td> <%= cuser.level %> </td>
+          <td> <%= link_to 'Edit level', '#' %> </td>
+          <td> <%= link_to 'Delete', '#' %></td>
+        </tr>
+      <% end %>
+      </table>
+      <% end %>
+ 
+
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Edit password', edit_password_user_path(@user) %> |

@@ -23,8 +23,12 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @title = @user.name
-    @competences = @user.competences#(params[:user])
-    #@competences = @user.user_competences
+    #este tiene solo el nombre de las competencias
+    #@competences = @user.competences
+
+    #este tiene el user_id competence_id level
+    @competences = @user.user_competences
+    
   end
 
   # GET /users/new

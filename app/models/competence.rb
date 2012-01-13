@@ -17,7 +17,7 @@ class Competence < ActiveRecord::Base
 
 	#############################################################
   ###################### Relationships ########################
-  has_many :user_competences 
+  has_many :user_competences#, :nullify
   has_many :users, :through => :user_competences
 	## el dependent es para que cuando se elimine una competencia
 	## automaticamente se eliminen las entradas de la tabla de 
