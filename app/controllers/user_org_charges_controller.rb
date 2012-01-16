@@ -6,7 +6,7 @@ class UserOrgChargesController < ApplicationController
 		if @org = OrganicUnit.find(params[:organic_unit_id]) && params[:organic_unit_id]
 			@user_org = UserOrgCharge.new
 			@user_org.organic_unit_id = params[:organic_unit_id]
-			#@charges = Charge.all
+			@charges = Charge.all
 			@users = User.all
 		else
 			render 'new'
