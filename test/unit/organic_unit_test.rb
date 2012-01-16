@@ -7,6 +7,7 @@
 #  created_at  :datetime
 #  updated_at  :datetime
 #  description :string(255)
+#  id_padre    :integer
 #
 
 require 'test_helper'

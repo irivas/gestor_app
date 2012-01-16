@@ -4,7 +4,9 @@
   <b>Name:</b>
   <%= @organic_unit.name %><br />
   <b>Description:</b>
-  <%= @organic_unit.description %>
+  <%= @organic_unit.description %><br />
+  <b>Organización padre:</b>
+  <%= OrganicUnit.find(OrganicUnit.find(@organic_unit.id_padre)).name %>
 </p><br />
 <p>
 	

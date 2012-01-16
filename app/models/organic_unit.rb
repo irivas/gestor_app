@@ -7,10 +7,11 @@
 #  created_at  :datetime
 #  updated_at  :datetime
 #  description :string(255)
+#  id_padre    :integer
 #
 
 class OrganicUnit < ActiveRecord::Base
-	attr_accessible :name, :description 
+	attr_accessible :name, :description, :id_padre
 
 	validates :name,	:presence => true,
 						:uniqueness => { :case_sensitive => false }

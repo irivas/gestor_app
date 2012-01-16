@@ -19,6 +19,11 @@
     <%= f.label :description %><br />
     <%= f.text_field :description %>
   </div>
+
+  <div class="field">
+    <%= f.label "Organizacion padre" %>
+    <%= f.collection_select :id_padre, @units, :id, :name, :prompt => 'Select competence' %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>

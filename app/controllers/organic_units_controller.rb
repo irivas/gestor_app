@@ -14,6 +14,7 @@ class OrganicUnitsController < ApplicationController
   def new
     @title = "New Organic Unit"
     @organic_unit = OrganicUnit.new
+    @units = OrganicUnit.all
 
   end
 
