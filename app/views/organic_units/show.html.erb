@@ -6,7 +6,11 @@
   <b>Description:</b>
   <%= @organic_unit.description %><br />
   <b>Organización padre:</b>
-  <%= OrganicUnit.find(OrganicUnit.find(@organic_unit.id_padre)).name %>
+  <% if !@organic_unit.id_padre.nil? %>
+	  <%= OrganicUnit.find(OrganicUnit.find(@organic_unit.id_padre)).name %>
+	<% else %>
+		<p>Raiz</p>
+	<% end %>
 </p><br />
 <p>
 	
