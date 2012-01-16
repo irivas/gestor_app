@@ -2,8 +2,9 @@
 
 <table>
   <tr>
-    <th width='30%'>Name</th>
-    <th width='60%'>Description</th>
+    <th width='40%'>Name</th>
+    <th width='40%'>Description</th>
+    <th width='20%'>Parent Org.</th>
     <th></th>
     <th></th>
   </tr>
@@ -12,6 +13,12 @@
   <tr>
     <td><%= link_to organic_unit.name, organic_unit %></td>
     <td><%= organic_unit.description %></td>
+      <% if !organic_unit.id_padre.nil? %>
+        <% @org_padre = OrganicUnit.find(OrganicUnit.find(organic_unit.id_padre)) %>
+        <td><%= link_to @org_padre.name, @org_padre %></td>
+      <% else %>
+        <td>--</td>
+      <% end %>
     <td><%= link_to 'Edit', edit_organic_unit_path(organic_unit) %></td>
     <td><%= link_to 'Delete', organic_unit, confirm: 'Are you sure?', method: :delete, :title => "Delete #{organic_unit.name}" %></td>
   </tr>

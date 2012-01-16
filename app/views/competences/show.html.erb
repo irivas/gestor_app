@@ -5,5 +5,26 @@
   <%= @competence.name %>
 </p>
 
+<p>
+  <b>Cargos en los que aparece</b><br />
+  <% if !@charges.empty? %>
+  	<table>
+  		<tr>
+  			<th>Name</th>
+  			<th></th>
+  		</tr>
+  		
+  			<% @charges.each do |charge| %>
+  			<tr>
+  				<td><%= link_to charge.name, charge %></td>
+  				<td><%= link_to "Delete", '#' %></td>
+  			</tr>
+  			<% end %>
+  		
+  	</table>
+  <% end %>
+</p>
+
+
 <%= link_to 'Edit', edit_competence_path(@competence) %> |
 <%= link_to 'Back', competences_path %>

@@ -6,7 +6,11 @@ GestorApp::Application.routes.draw do
 
   resources :organic_units
 
-  resources :competences
+  resources :competences do
+    member do
+      get 'delete_charge'
+    end
+  end
 
   resources :user_competences, :collection => { :create => :post }
 

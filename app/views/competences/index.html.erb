@@ -1,17 +1,22 @@
-<h1><%= @title %></h1>
-<table>
-<tr>
-	<th>Name</th>
-	<th></th>
-	<th></th>
-</tr>
-<% @competences.each do |competence| %>
-	<tr>
-		<td><%= link_to competence.name, competence %></td>
-		<td><%= link_to 'Edit', edit_competence_path(competence) %></td>
- 	    <td><%= link_to 'Delete', competence, :confirm => 'Are you sure?', :method => :delete,
-                                      :title => "Delete #{competence.name}" %></td>
-	</tr>
-<% end %>
-</table>
+<h1><span><%= @title %></span></h1>
 <%= link_to 'New Competence', new_competence_path %>
+
+<%= form_tag competences_path, :method => 'get', :id => "competencias_search" do %>
+    <p>
+      <%= text_field_tag :search, params[:search] %>
+      <%= submit_tag "Search", :name => nil %>
+    </p>
+  <% end %>
+
+
+<div class='contents'>
+
+<!-- la tabla de los usuarios se ha puesto en partial _usuarios.html.erb -->
+<!-- para hacer uso de Ajax -->
+<div id="competencias"><%= render 'competencias' %></div>
+
+<div class='clear_all'></div>
+</div>
+</div>
+<br />
+

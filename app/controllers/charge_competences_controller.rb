@@ -28,7 +28,12 @@ class ChargeCompetencesController < ApplicationController
 	end
 
 	def destroy
-		redirect_to charges_path
+		@charge_competence = ChargeCompetence.find(params[:id])
+		@charge = @charge_competence.charge
+		ChargeCompetence.find(params[:id]).destroy
+		flash[:success] = "Charge competence deleted."
+    redirect_to @charge
+		
 	end
 
 

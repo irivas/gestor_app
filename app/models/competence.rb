@@ -31,4 +31,16 @@ class Competence < ActiveRecord::Base
 	## la relacion en las que participe.                              
   #############################################################
   #############################################################
+
+  def self.search(search)
+    if search
+      #all(:conditions => ['name LIKE ?', "%#{search}%"])
+      where('name LIKE ?', "%#{search}%")
+    else
+      #all
+      scoped
+    end
+  end
+
+  
 end

@@ -3,7 +3,7 @@ class CompetencesController < ApplicationController
   
   
 	def index
-		@competences = Competence.all
+		@competences = Competence.search(params[:search]).paginate(:per_page => 2, :page => params[:page])
     @title = "Competences"
 	end
 
@@ -24,6 +24,7 @@ class CompetencesController < ApplicationController
 	def show
     @competence = Competence.find(params[:id])
     @title = @competence.name
+    @charges = @competence.charges
   end
 
   def edit

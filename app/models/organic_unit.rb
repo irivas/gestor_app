@@ -22,5 +22,8 @@ class OrganicUnit < ActiveRecord::Base
 
 	has_many :user_org_charges, :dependent => :destroy
   has_many :charges,          :through => :user_org_charges
-  has_many :users,    				:through => :user_org_charges 							
+  has_many :users,    				:through => :user_org_charges 	
+  
+  
+  						
 end
