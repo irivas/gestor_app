@@ -11,6 +11,7 @@ class ChargesController < ApplicationController
   def show
     @charge = Charge.find(params[:id])
     @competences = @charge.competences
+    @title = "Cargo"
     
   end
 

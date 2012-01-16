@@ -23,7 +23,7 @@ class CompetencesController < ApplicationController
 
 	def show
     @competence = Competence.find(params[:id])
-    @title = @competence.name
+    @title = "Competence"
     @charges = @competence.charges
   end
 

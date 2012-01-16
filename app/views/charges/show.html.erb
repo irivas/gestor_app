@@ -1,3 +1,4 @@
+<h1><%= @title %></h1>
 <p id="notice"><%= notice %></p>
 
 <p>
@@ -28,7 +29,7 @@
 	<% end %>
 <p>
   <%= link_to 'Competencia nueva', new_charge_competence_path(params = :charge_id => @charge.id) %>
-</p>
+</p><br />
 
 <%= link_to 'Edit', edit_charge_path(@charge) %> |
 <%= link_to 'Back', charges_path %>

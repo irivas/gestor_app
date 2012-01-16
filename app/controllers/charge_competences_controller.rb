@@ -33,7 +33,6 @@ class ChargeCompetencesController < ApplicationController
 		ChargeCompetence.find(params[:id]).destroy
 		flash[:success] = "Charge competence deleted."
     redirect_to @charge
-		
 	end
 
 

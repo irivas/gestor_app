@@ -14,10 +14,10 @@
   			<th></th>
   		</tr>
   		
-  			<% @charges.each do |charge| %>
+  			<% @competence.charge_competences.each do |c| %>
   			<tr>
-  				<td><%= link_to charge.name, charge %></td>
-  				<td><%= link_to "Delete", '#' %></td>
+  				<td><%= link_to c.charge.name, c.charge %></td>
+  				<td> <%= link_to 'Delete', c, :confirm => 'Are you  sure?', :method => :delete %></td>
   			</tr>
   			<% end %>
   		
