@@ -1,0 +1,20 @@
+<%= form_for(@user_org) do |f| %>
+  <%= render 'shared/error_messages', :object => f.object %>
+
+  <div class="field">
+    <%= f.label "Users" %>
+  </div>
+  
+  <% @users.each do |user| %>
+    <%= check_box_tag "user_ids[]", user.id  %>
+    <%= label_tag(user.name) %><br />
+  <% end %>
+  
+  <div class="field">
+    <%= f.hidden_field :organic_unit_id %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Add members"%>
+  </div>
+<% end %>

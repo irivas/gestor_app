@@ -26,10 +26,6 @@ class ChargeCompetence < ActiveRecord::Base
   	validates_uniqueness_of :charge_id, :scope => [:competence_id]
 
 
-  	def add_competences(competences)
-  		competences.each do |c|
-
-  		end
-  	end
+  	
 
 end

@@ -49,7 +49,10 @@ class User < ActiveRecord::Base
   has_many :competences, :through => :user_competences
   ## el dependent es para que cuando se elimine un usuario
   ## automaticamente se eliminen las entradas de la tabla de 
-  ## la relacion en las que participe.                              
+  ## la relacion en las que participe.           
+  has_many :user_org_charges, :dependent => :destroy
+  has_many :charges,          :through => :user_org_charges
+  has_many :organic_units,    :through => :user_org_charges                   
   #############################################################
   #############################################################
 

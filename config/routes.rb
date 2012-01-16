@@ -2,6 +2,8 @@ GestorApp::Application.routes.draw do
   
   resources :charges
 
+  resources :user_org_charges, :collection => { :create => :post }
+
   resources :organic_units
 
   resources :competences

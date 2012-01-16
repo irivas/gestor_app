@@ -6,6 +6,33 @@
   <b>Description:</b>
   <%= @organic_unit.description %>
 </p><br />
+<p>
+	
+  <%= link_to 'Add members', new_user_org_charge_path(params = :organic_unit_id => @organic_unit.id) %>
+</p><br />
+
+<% if !@users.empty? %>
+		<p>
+			<b> Miembros participantes </b>
+		</p>
+		<table>
+			<tr>
+				<th> Name </th>
+				<th></th>
+			</tr>
+			
+				<% @users.each do |u| %>
+					
+					<tr>
+						<td> <%= link_to u.name, u %> </td>
+						<td> <%= link_to 'Delete', u, :confirm => 'Are you 	sure?', :method => :delete %></td>
+					</tr>
+				<% end %>
+			
+		</table>
+		<% else %>
+			<p><b>No hay ningún miembro en esta organización.</b></p>
+	<% end %>
 
 
 <%= link_to 'Edit', edit_organic_unit_path(@organic_unit) %> |

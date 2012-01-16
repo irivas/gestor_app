@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120113182906) do
+ActiveRecord::Schema.define(:version => 20120116102027) do
 
   create_table "charge_competences", :force => true do |t|
     t.integer  "competence_id"
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(:version => 20120113182906) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "description"
+    t.integer  "id_padre"
   end
 
   create_table "user_competences", :force => true do |t|
@@ -54,6 +55,18 @@ ActiveRecord::Schema.define(:version => 20120113182906) do
   add_index "user_competences", ["competence_id"], :name => "index_user_competences_on_competence_id"
   add_index "user_competences", ["user_id", "competence_id"], :name => "index_user_competences_on_user_id_and_competence_id", :unique => true
   add_index "user_competences", ["user_id"], :name => "index_user_competences_on_user_id"
+
+  create_table "user_org_charges", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "organic_unit_id"
+    t.integer  "charge_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "user_org_charges", ["charge_id"], :name => "index_user_org_charges_on_charge_id"
+  add_index "user_org_charges", ["organic_unit_id"], :name => "index_user_org_charges_on_organic_unit_id"
+  add_index "user_org_charges", ["user_id"], :name => "index_user_org_charges_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "name"

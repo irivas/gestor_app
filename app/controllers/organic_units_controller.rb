@@ -34,6 +34,7 @@ class OrganicUnitsController < ApplicationController
   def show
     @organic_unit = OrganicUnit.find(params[:id])
     @title = @organic_unit.name
+    @users = @organic_unit.users
   end
 
   # GET /organic_units/1/edit
