@@ -45,7 +45,7 @@ class User < ActiveRecord::Base
 
   #############################################################
   ################# Relationships #############################
-  has_many :user_competences#, :dependent => :nullify
+  has_many :user_competences, :dependent => :destroy
   has_many :competences, :through => :user_competences
   ## el dependent es para que cuando se elimine un usuario
   ## automaticamente se eliminen las entradas de la tabla de 
@@ -67,18 +67,18 @@ class User < ActiveRecord::Base
 
   def has_password?(submitted_password)
     	encrypted_password == encrypt(submitted_password)
-  	end
+  end
 
-  	def self.authenticate(email, submitted_password)
-    	user = find_by_email(email)
-    	return nil  if user.nil?
-    	return user if user.has_password?(submitted_password)
-  	end
+  def self.authenticate(email, submitted_password)
+   	user = find_by_email(email)
+   	return nil  if user.nil?
+   	return user if user.has_password?(submitted_password)
+  end
 
-  	def self.authenticate_with_salt(id, cookie_salt)
-  		user = find_by_id(id)
-  		(user && user.salt == cookie_salt) ? user : nil
-  	end
+  def self.authenticate_with_salt(id, cookie_salt)
+  	user = find_by_id(id)
+  	(user && user.salt == cookie_salt) ? user : nil
+  end
 
     ######################################################
     ############### Para competences #####################
@@ -92,6 +92,12 @@ class User < ActiveRecord::Base
     ######################################################
     ######################################################
     #######Comprueba si tiene competencias ###############
+    
+    #busca si el user tiene una competencia en concreto
+    def competence?(competence)
+      user_competence.find_by_competence_id(competence)
+    end
+
     def competences?#(user)
       #user = find_by_id(id)
       competences.all.empty?

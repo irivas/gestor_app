@@ -6,7 +6,7 @@ GestorApp::Application.routes.draw do
 
   resources :competences
 
-  resources :user_competences
+  resources :user_competences, :collection => { :create => :post }
 
   resources :charge_competences
   resources :sessions, :only => [:new, :create, :destroy]

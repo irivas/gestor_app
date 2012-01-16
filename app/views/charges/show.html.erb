@@ -4,7 +4,30 @@
   <b>Name:</b>
   <%= @charge.name %>
 </p>
+	<% if !@competences.empty? %>
+		<p>
+			<b> Competencias asociadas al cargo </b>
+		</p>
+		<table>
+			<tr>
+				<th> Name </th>
+				<th></th>
+			</tr>
+			
+				<% @competences.each do |c| %>
 
+					<tr>
+						<td> <%= link_to c.name, c %> </td>
+						<td> <%= link_to 'Delete', c, :confirm => 'Are you sure?',
+                                          :method => :delete,
+                                          :controller => "charge_competences" %></td>
+					</tr>
+				<% end %>
+			
+		</table>
+		<% else %>
+			<p><b>No hay competencias asociadas al cargo</b></p>
+	<% end %>
 <p>
   <%= link_to 'Competencia nueva', new_charge_competence_path(params = :charge_id => @charge.id) %>
 </p>

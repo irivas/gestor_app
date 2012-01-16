@@ -51,6 +51,10 @@ ActiveRecord::Schema.define(:version => 20120113182906) do
     t.datetime "updated_at"
   end
 
+  add_index "user_competences", ["competence_id"], :name => "index_user_competences_on_competence_id"
+  add_index "user_competences", ["user_id", "competence_id"], :name => "index_user_competences_on_user_id_and_competence_id", :unique => true
+  add_index "user_competences", ["user_id"], :name => "index_user_competences_on_user_id"
+
   create_table "users", :force => true do |t|
     t.string   "name"
     t.string   "surname"

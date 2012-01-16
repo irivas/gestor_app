@@ -10,6 +10,8 @@ class ChargesController < ApplicationController
   # GET /charges/1.json
   def show
     @charge = Charge.find(params[:id])
+    @competences = @charge.competences
+    
   end
 
   # GET /charges/new

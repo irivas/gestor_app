@@ -23,5 +23,13 @@ class ChargeCompetence < ActiveRecord::Base
 
   	validates :charge_id, 		:presence => true
   	validates :competence_id, 	:presence => true
-  	#validates_uniqueness_of :user_id, :scope => [:competence_id]
+  	validates_uniqueness_of :charge_id, :scope => [:competence_id]
+
+
+  	def add_competences(competences)
+  		competences.each do |c|
+
+  		end
+  	end
+
 end

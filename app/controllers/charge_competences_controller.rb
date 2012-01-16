@@ -19,11 +19,16 @@ class ChargeCompetencesController < ApplicationController
 	end
 
 	def create
-
+		@competences = params[:competence_ids]
+		@competences.each do |c|
+			ChargeCompetence.create(	:competence_id => c, 
+																:charge_id => params[:charge_competence][:charge_id])
+		end
+		redirect_to charge_path(params[:charge_competence][:charge_id])
 	end
 
 	def destroy
-
+		redirect_to charges_path
 	end
 
 

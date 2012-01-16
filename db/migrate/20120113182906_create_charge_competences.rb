@@ -7,7 +7,7 @@ class CreateChargeCompetences < ActiveRecord::Migration
       t.timestamps
     end
     ###### Creamos indice para hacer la busqueda mas rapida #########
-	add_index :charge_competences, :charge_id
+	  add_index :charge_competences, :charge_id
     add_index :charge_competences, :competence_id
   end
 end

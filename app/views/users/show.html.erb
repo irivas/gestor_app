@@ -31,12 +31,11 @@
 </p>
 <br />
 
-<% unless @competences.empty? %>
 <p>
-  <b>Competencias</b><br />
-  
   <%= link_to 'Competencia nueva', new_user_competence_path(params = :user_id => @user.id) %>
-</p>
+</p><br />
+<% unless @competences.empty? %>
+  <b>Competencias</b><br />
     <table>
       <tr>
         <th width='30%'>Name</th>

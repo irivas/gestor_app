@@ -4,11 +4,12 @@
   <div class="field">
     <%= f.label "Competences" %>
   </div>
-
+  
   <% @competences.each do |compt| %>
-    <%= check_box_tag(compt) %>
-    <%= label_tag(compt, compt.name) %>
+    <%= check_box_tag "competence_ids[]", compt.id  %>
+    <%= label_tag(compt.name) %><br />
   <% end %>
+  
   <div class="field">
     <%= f.hidden_field :charge_id %>
   </div>
