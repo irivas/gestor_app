@@ -1,0 +1,17 @@
+<%= will_paginate %>
+<table>
+  <tr>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @charges.each do |charge| %>
+  <tr>
+    <td><%= link_to charge.name, charge %></td>
+    <td><%= link_to 'Edit', edit_charge_path(charge) %></td>
+    <td><%= link_to 'Delete', charge, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+<%= will_paginate %>

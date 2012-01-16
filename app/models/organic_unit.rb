@@ -24,6 +24,14 @@ class OrganicUnit < ActiveRecord::Base
   has_many :charges,          :through => :user_org_charges
   has_many :users,    				:through => :user_org_charges 	
   
-  
+  def self.search(search)
+    if search
+      #all(:conditions => ['name LIKE ?', "%#{search}%"])
+      where('name LIKE ?', "%#{search}%")
+    else
+      #all
+      scoped
+    end
+  end
   						
 end

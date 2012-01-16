@@ -3,7 +3,7 @@ class ChargesController < ApplicationController
   # GET /charges.json
   def index
     @title = "Listado de cargos"
-    @charges = Charge.all
+    @charges = Charge.search(params[:search]).paginate(:per_page => 2, :page => params[:page])
   end
 
   # GET /charges/1

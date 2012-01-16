@@ -16,4 +16,28 @@ $(function() {
 		$.get($("#usuarios_search").action, $("#usuarios_search").serialize(), null, "script");
 		return false;
 	});
+	$("#competencias .pagination a").live("click", function() {
+		$.getScript(this.href);
+		return false;
+	});
+	$("#competencias_search input").keyup(function() {
+		$.get($("#competencias_search").action, $("#competencias_search").serialize(), null, "script");
+		return false;
+	});
+	$("#cargos .pagination a").live("click", function() {
+		$.getScript(this.href);
+		return false;
+	});
+	$("#cargos_search input").keyup(function() {
+		$.get($("#cargos_search").action, $("#cargos_search").serialize(), null, "script");
+		return false;
+	});
+	$("#organizaciones .pagination a").live("click", function() {
+		$.getScript(this.href);
+		return false;
+	});
+	$("#organizaciones_search input").keyup(function() {
+		$.get($("#organizaciones_search").action, $("#organizaciones_search").serialize(), null, "script");
+		return false;
+	});
 });

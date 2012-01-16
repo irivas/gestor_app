@@ -5,7 +5,7 @@ class OrganicUnitsController < ApplicationController
   # GET /organic_units
   # GET /organic_units.json
   def index
-    @organic_units = OrganicUnit.all
+    @organic_units = OrganicUnit.search(params[:search]).paginate(:per_page => 2, :page => params[:page])
     @title = "Organic Units"
   end
 
