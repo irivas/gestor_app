@@ -4,7 +4,10 @@
   <% @users.each do |user| %>
     <%= check_box_tag "user_ids[]", user.id  %>
     <%= label_tag(user.name) %>
-    <%= f.collection_select :charge_id, @charges, :id, :name, :prompt => 'Select charge' %><br />
+    <%= select_tag "charge_ids[]", 
+                          options_from_collection_for_select(
+                                  @charges, :id, :name),
+                          :prompt => 'Select charge' %><br />
     
   <% end %>
   

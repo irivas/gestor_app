@@ -1,0 +1,28 @@
+<h1><%= @title %></h1>
+
+<%= form_for(@user_org_charge) do |f| %>
+
+  <%= render 'shared/error_messages', :object => f.object %>
+
+  <div class="field">
+    <%= f.label "Organic Unit: " %>
+    <b><%= link_to @user_org_charge.organic_unit.name, @user_org_charge.organic_unit %></b><br />
+  </div>
+  
+  <div class="field">
+    <%= f.label "Member: " %>
+    <b><%= link_to @user_org_charge.user.name, @user_org_charge.user %></b><br />
+  </div>
+  
+  <div class="field">
+    <%= f.label "New charge: " %>
+    <%= f.collection_select :charge_id, @charges, :id, :name, :prompt => 'Select new charge' %><br />
+  </div>
+  
+
+  <div class="actions">
+    <%= f.submit "Update charge"%>
+  </div>
+<% end %>
+
+<%= link_to 'Back', competences_path %>

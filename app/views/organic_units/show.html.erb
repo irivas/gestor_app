@@ -23,15 +23,23 @@
 		</p>
 		<table>
 			<tr>
-				<th> Name </th>
+				<th width='40%'>Name</th>
+				<th width='40%'>Charge</th>
+				<th></th>
 				<th></th>
 			</tr>
 			
-				<% @users.each do |u| %>
+				<% @organic_unit.user_org_charges.each do |u| %>
 					
 					<tr>
-						<td> <%= link_to u.name, u %> </td>
+						<td> <%= link_to u.user.name, u.user %> </td>
+						<% if !u.charge.nil? %>
+							<td> <%= link_to u.charge.name, u.charge %> </td>
+						<% else %>
+							<td>Sin cargo</td>
+						<% end %>
 						<td> <%= link_to 'Delete', u, :confirm => 'Are you 	sure?', :method => :delete %></td>
+						<td> <%= link_to 'Change charge', edit_user_org_charge_path(u) %> </td>
 					</tr>
 				<% end %>
 			
