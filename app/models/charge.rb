@@ -17,7 +17,7 @@ class Charge < ActiveRecord::Base
 
 	#############################################################
   ###################### Relationships ########################
-  has_many :charge_competences#, :nullify
+  has_many :charge_competences, :dependent => :destroy
   has_many :competences, :through => :charge_competences
 	## el dependent es para que cuando se elimine una competencia
 	## automaticamente se eliminen las entradas de la tabla de 
