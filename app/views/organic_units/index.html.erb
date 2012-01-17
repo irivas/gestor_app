@@ -9,7 +9,23 @@
 
 
 <div class='contents'>
-
+	<% if !@orgs.empty? %>
+		<% @orgs.each do |org| %>
+			<ul>
+				<% if org.id_padre.nil? %>
+					<li> <%= link_to org.name, org %></li>
+					<% @orgs_hijas = OrganicUnit.find_all_by_id_padre(org.id) %>
+					<% if !@orgs_hijas.empty? %>
+						<ul>
+							<% @orgs_hijas.each do |hija| %>
+								<li><%= link_to hija.name, hija %></li>
+							<% end%>
+						</ul>
+					<% end %>
+				<% end %>
+			</ul>
+		<% end %>
+	<% end %>
 <!-- la tabla de los usuarios se ha puesto en partial _usuarios.html.erb -->
 <!-- para hacer uso de Ajax -->
 <div id="organizaciones"><%= render 'organizaciones' %></div>

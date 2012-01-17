@@ -7,10 +7,23 @@
   <%= @organic_unit.description %><br />
   <b>Organización padre:</b>
   <% if !@organic_unit.id_padre.nil? %>
-	  <%= OrganicUnit.find(OrganicUnit.find(@organic_unit.id_padre)).name %>
+	  <%= link_to OrganicUnit.find(OrganicUnit.find(@organic_unit.id_padre)).name,
+	  						OrganicUnit.find(OrganicUnit.find(@organic_unit.id_padre))%>
 	<% else %>
 		<p>Raiz</p>
-	<% end %>
+	<% end %><br />
+
+	<b>Suborganizaciones:</b>
+  	<% @orgs = OrganicUnit.find_all_by_id_padre(@organic_unit.id) %>
+  	<% if !@orgs.nil? %>
+	  	<ul>
+	  		<% @orgs.each do |org| %>
+	  		<li><%= link_to org.name, org %></li>
+	  		<% end %>
+	  	</ul>
+	  	<% else %>
+	  		<p>Sin suborganizaciones.</p>
+	  	<% end %>
 </p><br />
 <p>
 	

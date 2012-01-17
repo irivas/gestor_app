@@ -7,6 +7,7 @@ class OrganicUnitsController < ApplicationController
   def index
     @organic_units = OrganicUnit.search(params[:search]).paginate(:per_page => 2, :page => params[:page])
     @title = "Organic Units"
+    @orgs = OrganicUnit.all
   end
 
   # GET /organic_units/new
@@ -42,6 +43,8 @@ class OrganicUnitsController < ApplicationController
   def edit
     @organic_unit = OrganicUnit.find(params[:id])
     @title = "Edit organic unit"
+    @units = OrganicUnit.all
+
   end
 
   # PUT /organic_units/1
